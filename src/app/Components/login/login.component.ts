@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  user: UserDTO = new UserDTO('', '');
+  user: UserDTO = new UserDTO('', '', '', '', '', '', new Date());
 
   constructor() {}
 
