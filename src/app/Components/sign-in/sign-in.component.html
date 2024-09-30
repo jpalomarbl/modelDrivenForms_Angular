@@ -1,1 +1,165 @@
-<p>sign-in works!</p>
+<div class="main-container">
+    <h1>Test Driven Forms App</h1>
+    <form #signInForm="ngForm" (ngSubmit)="signIn(signInForm)">
+        <div>
+            <label for="email">Email: </label>
+            <input 
+                type="email"
+                name="email"
+                [(ngModel)]="user.email"
+                #email="ngModel"
+                placeholder="Email..."
+                required
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            />
+            <div
+                class="errors"
+                *ngIf="email.invalid && email.dirty"
+            >
+                <span [hidden]="!email.errors?.['required'] || email.pristine">
+                    Email required
+                </span>
+                <span [hidden]="!email.errors?.['pattern'] || email.pristine">
+                    Invalid email
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <label for="password">Password: </label>
+            <input
+                type="password"
+                name="password"
+                [(ngModel)]="user.password"
+                #password="ngModel"
+                placeholder="Password..."
+                required
+            />
+            <div
+                class="errors"
+                *ngIf="password.invalid && password.dirty"
+            >
+                <span [hidden]="!password.errors?.['required'] || password.pristine">
+                    Password required
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <label for="name">Name: </label>
+            <input
+                type="text"
+                name="name"
+                [(ngModel)]="user.name"
+                #name="ngModel"
+                placeholder="Name..."
+                required
+                minlength="5"
+                maxlength="25"
+            />
+            <div
+                class="errors"
+                *ngIf="name.invalid && name.dirty"
+            >
+                <span [hidden]="!name.errors?.['required'] || name.pristine">
+                    Name required
+                </span>
+                <span [hidden]="!(name.errors?.['minlength'] || name.errors?.['maxlength']) || name.pristine">
+                    Name must be 5 to 25 characters long
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <label for="surname1">First surname: </label>
+            <input
+                type="text"
+                name="surname1"
+                [(ngModel)]="user.surname1"
+                #surname1="ngModel"
+                placeholder="Surname..."
+                required
+                minlength="5"
+                maxlength="25"
+            />
+            <div
+                class="errors"
+                *ngIf="surname1.invalid && surname1.dirty"
+            >
+                <span [hidden]="!surname1.errors?.['required'] || surname1.pristine">
+                    First surname required
+                </span>
+                <span [hidden]="!(surname1.errors?.['minlength'] || surname1.errors?.['maxlength']) || surname1.pristine">
+                    Surname must be 5 to 25 characters long
+                </span>
+            </div>
+        </div>
+        <div>
+            <label for="surname2">Second surname: </label>
+            <input
+                type="text"
+                name="surname2"
+                [(ngModel)]="user.surname2"
+                #surname2="ngModel"
+                placeholder="Surname..."
+                minlength="5"
+                maxlength="25"
+            />
+            <div
+                class="errors"
+                *ngIf="surname2.invalid && surname2.dirty"
+            >
+                <span [hidden]="!(surname2.errors?.['minlength'] || surname2.errors?.['maxlength']) || surname2.pristine">
+                    Surname must be 5 to 25 characters long
+                </span>
+            </div>
+        </div>
+        <div>
+            <label for="alias">Alias: </label>
+            <input
+                type="text"
+                name="alias"
+                [(ngModel)]="user.alias"
+                #alias="ngModel"
+                placeholder="Alias..."
+                required
+                minlength="5"
+                maxlength="25"
+            />
+            <div
+                class="errors"
+                *ngIf="alias.invalid && alias.dirty"
+            >
+                <span [hidden]="!alias.errors?.['required'] || alias.pristine">
+                    Alias required
+                </span>
+                <span [hidden]="!(alias.errors?.['minlength'] || alias.errors?.['maxlength']) || alias.pristine">
+                    Alias must be 5 to 25 characters long
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <label for="birthdate">Birthdate: </label>
+            <input
+                type="date"
+                name="birthdate"
+                [ngModel]="user.birthdate | date: 'yyyy-MM-dd'"
+                #birthdate="ngModel"
+                required
+            />
+            <div
+                class="errors"
+                *ngIf="birthdate.invalid && birthdate.dirty"
+            >
+                <span [hidden]="!birthdate.errors?.['required'] || birthdate.pristine">
+                    Birthdate required
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit">Join Now</button>
+        </div>
+    </form>
+</div>
